@@ -16,4 +16,11 @@ class SistemaAprovacaoTest {
 		Assertions.assertTrue(SistemaAprovacao.alunoAprovado(aluno) == true);
 	}
 
+	@Test
+	void alunoAprovadoDeveriaRetornarFalsoQuandoNotasForem642() {
+		Aluno aluno = new Aluno("aluno", "7a serie");
+		aluno.adicionarNota(new Nota(6.0)).adicionarNota(new Nota(4.0)).adicionarNota(new Nota(2.0));
+		Assertions.assertFalse(SistemaAprovacao.alunoAprovado(aluno) == true);
+	}
+
 }

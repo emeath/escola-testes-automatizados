@@ -13,7 +13,7 @@ public class SistemaAprovacao {
 		
 		somatorioNotas /= aluno.getNotas().size();
 
-		if (somatorioNotas >= 8.0) {
+		if (somatorioNotas >= 6.0) {
 			return true;
 		}
 
