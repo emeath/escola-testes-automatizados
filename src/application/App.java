@@ -10,7 +10,7 @@ public class App {
 		
 		Aluno aluno = new Aluno("João", "7a serie");
 		System.out.println(aluno);
-		aluno.adicionarNota(new Nota(5.0)).adicionarNota(new Nota(6.0)).adicionarNota(new Nota(6.0));
+		aluno.adicionarNota(new Nota(11.0)).adicionarNota(new Nota(6.0));
 		
 		boolean alunoAprovado = SistemaAprovacao.alunoAprovado(aluno);
 		
