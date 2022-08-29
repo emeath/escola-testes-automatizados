@@ -9,13 +9,13 @@ public class App {
 	public static void main(String[] args) {
 		
 		Aluno aluno = new Aluno("João", "7a serie");
-		System.out.println(aluno);
-		aluno.adicionarNota(new Nota(11.0)).adicionarNota(new Nota(6.0));
+		aluno.adicionarNota(new Nota(10.0)).adicionarNota(new Nota(6.0)).adicionarNota(new Nota(6.0));
 		
 		boolean alunoAprovado = SistemaAprovacao.alunoAprovado(aluno);
 		
 		System.out.println(aluno);
-		System.out.println(alunoAprovado);
+		System.out.println("Aluno aprovado? " + alunoAprovado);
+		System.out.println("Media: " + SistemaAprovacao.calculaMediaDoAluno(aluno));
 		
 	}
 

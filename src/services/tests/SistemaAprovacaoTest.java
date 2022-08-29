@@ -21,21 +21,21 @@ class SistemaAprovacaoTest {
 	}
 
 	@Test
-	void atribuirNotaParaAlunoDeveriaLancarExcecaoQuandoNotaMaiorQue10() {
+	public void atribuirNotaParaAlunoDeveriaLancarExcecaoQuandoNotaMaiorQue10() {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
 			alunoTeste.adicionarNota(new Nota(10.1));
 		});
 	}
 
 	@Test
-	void atribuirNotaParaAlunoDeveriaLancarExcecaoQuandoNotaMenorQue0() {
+	public void atribuirNotaParaAlunoDeveriaLancarExcecaoQuandoNotaMenorQue0() {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
 			alunoTeste.adicionarNota(new Nota(-0.1));
 		});
 	}
 
 	@Test
-	void atribuirNotaParaAlunoDeveriaLancarExcecaoQuandoQuantidadeDeNotasForMaiorQue3() {
+	public void atribuirNotaParaAlunoDeveriaLancarExcecaoQuandoQuantidadeDeNotasForMaiorQue3() {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
 			alunoTeste
 					.adicionarNota(new Nota(4.0))
@@ -46,13 +46,13 @@ class SistemaAprovacaoTest {
 	}
 
 	@Test
-	void alunoAprovadoDeveriaRetornarVerdadeiroQuandoNotasForem678() {
+	public void alunoAprovadoDeveriaRetornarVerdadeiroQuandoNotasForem678() {
 		alunoTeste.adicionarNota(new Nota(6.0)).adicionarNota(new Nota(7.0)).adicionarNota(new Nota(8.0));
 		Assertions.assertTrue(SistemaAprovacao.alunoAprovado(alunoTeste) == true);
 	}
 
 	@Test
-	void alunoAprovadoDeveriaRetornarFalsoQuandoNotasForem642() {
+	public void alunoAprovadoDeveriaRetornarFalsoQuandoNotasForem642() {
 		alunoTeste.adicionarNota(new Nota(6.0)).adicionarNota(new Nota(4.0)).adicionarNota(new Nota(2.0));
 		Assertions.assertFalse(SistemaAprovacao.alunoAprovado(alunoTeste) == true);
 	}
@@ -96,4 +96,25 @@ class SistemaAprovacaoTest {
 				SistemaAprovacao.alunoAprovadoRecuperacao(alunoTeste));
 	}
 
+	@Test
+	public void calculaMediaDeAlunoDeveriaRetornarMediaQuandoQuantidadeDeNotasFor3() {
+		alunoTeste.adicionarNota(new Nota(1.0)).adicionarNota(new Nota(2.0)).adicionarNota(new Nota(3.0));
+		Assertions.assertTrue(SistemaAprovacao.calculaMediaDoAluno(alunoTeste) >= 0.0);
+	}
+	
+	@Test
+	public void calculaMediaDeAlunoDeveriaRetornarCincoPonto8QuandoNotas() {
+		alunoTeste.adicionarNota(new Nota(3.5)).adicionarNota(new Nota(7.4)).adicionarNota(new Nota(6.4));
+		Assertions.assertEquals(5.8, SistemaAprovacao.calculaMediaDoAluno(alunoTeste));
+	}
+	
+	@Test
+	public void calculaMediaDeAlunoDeveriaLancarExcecaoQuandoNotaForDiferenteDe3() {
+		
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			alunoTeste.adicionarNota(new Nota(3.5)).adicionarNota(new Nota(7.4));
+			SistemaAprovacao.calculaMediaDoAluno(alunoTeste);
+		});
+	}
+	
 }
